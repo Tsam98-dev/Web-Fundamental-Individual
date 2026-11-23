@@ -1,0 +1,455 @@
+/* ========== General Layout ========== */
+html body{
+    margin:0;
+    font-family: Roboto, Arial;
+    text-align: center;
+    color:rgb(0, 0, 0);
+    background-color: rgb(169, 255, 152);
+    overflow:auto;
+    height:100vh;
+    width: 100vw;
+}
+/* Hide scrollbar for Webkit browsers */
+body::-webkit-scrollbar {   
+  display: none;
+}
+/* Remove list bullet points and spacing */
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+/* ========== Button Styling ========== */
+button {
+    backface-visibility: hidden;
+    width:50px;
+    height:50px;
+    background-color: rgb(0, 0, 0,0);
+    color: black;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+/* Transparent hover background (invalid color syntax here) */
+button:hover{
+    background-color: (0,0,0,0);
+}
+/* Standard image size */
+img{
+    width:50px;
+    height:50px;
+}
+/* Disable resize for textarea */
+textarea{
+    resize:none;
+}
+/* Common input/textarea style */
+input, textarea{
+    background-color: rgb(189, 185, 185);
+    width: 90%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+/* ========== Page Section Grids ========== */
+.content,.profile,.contact{
+    grid-column: 1/4;
+    grid-row: 1/3;
+}
+
+.text{
+    text-align: justify;
+    align-content: center;
+    padding:10px;
+}
+.skills,.projects{
+    grid-column: 1/4;
+    grid-row: 1/3;
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 50px 1fr;
+}
+.profile-image{
+    width:150px;
+    height:150px;
+    border-radius:90px;
+    margin:20px 0px;
+    background-color: white;
+}
+/* ========== Navigation Buttons ========== */
+.conright-button,.sright-button{
+    grid-column:3/4;
+    grid-row:3/4;
+}
+.proleft-button,.pleft-button{
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+/* Cover section with 3D transform setup */
+.cover{
+    grid-row:1/2;
+    background-color: rgb(27, 129, 31);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    display:grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 50px 1fr 50px;
+}
+.cover-content{
+    font-size: 2em;
+    text-align: center;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    align-content: center;
+    color: #fff3e0;
+}
+/* Page layout for all content pages */
+.page{
+    text-align: center;
+    align-content: center;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    display:grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 50px 1fr 50px;
+}
+.page:hover{
+    background-color:rgb(205, 205, 200);
+}
+/* Positioning navigation buttons */
+.cright-button,.cleft-button{
+    backface-visibility: hidden;
+    grid-row: 3/4;
+}
+button.cright-button{
+    grid-column: 3/4;
+}
+button.cleft-button{
+    grid-column: 1/2;
+}
+/* List item spacing */
+.content-list li{
+    margin: 20px 0px;
+}
+/* Section titles in grid */
+.skills h1,.projects h1{
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+/* Table setup in center grid */
+table,.project-table{
+    grid-column: 1/4;
+    grid-row: 2/3;
+    text-align: center;
+    align-items: center;
+}
+/* Link styling */
+td a{
+    text-decoration: none;
+    color: black;
+}
+td a:hover,button:hover{
+    color:rgb(83, 83, 83);
+}
+/* Contact form layout */
+.contact-form{
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    row-gap: 20px;
+}
+form button{
+    color:black;
+    font-size: 0.9em;
+}
+/* ========== Animations ========== */
+
+/* Flip out animation */
+@keyframes flip{
+    0% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    90% {
+        opacity: 0.9;
+        transform: scaleX(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleX(1);
+    }
+}
+/* fold in animation */
+@keyframes fold{
+    0% {
+        opacity: 0;
+        transform: scaleX(1);
+    }
+    90% {
+        opacity: 0;
+        transform: scaleX(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+/* ========== Responsive Layouts ========== */
+
+/* Desktop layout (≥1025px) */
+@media (min-width:1025px){
+    /* ... existing rules remain unchanged ... */
+    .profile-page.flip,.skills-page.flip{
+        transform: rotateY(0deg);
+        z-index: 2;
+    }
+    .container{
+        position:absolute;
+        background-color: rgb(169, 255, 152);
+        width:100%;
+        height:100%;
+        display:grid;
+        grid-template-columns: 1fr 1000px 1fr;
+        grid-template-rows:1fr 700px 1fr;
+    }
+    .wrapper{
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        grid-column: 2/3;
+        grid-row: 2/3;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        border-radius: 5px;
+        perspective: 2000px;
+        position: relative;
+    }
+    .cover{
+        grid-column:2/3;
+        z-index: 2;
+    }
+    .cover-left{
+        grid-column:1/2;
+        grid-row:1/2;
+        display: none;
+        border-radius:5px 0px 0px 5px;
+    }
+    .cover-right{
+        grid-column:2/3;
+        grid-row:1/2;
+        border-radius:0px 5px 5px 0px;
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    }
+    .cover-left,.cover-right{
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(27, 129, 31);
+    }
+    .page{
+        transform:rotateY(180deg);
+        z-index: 0;
+    }
+    .profile-page,.projects-page{
+        background-color: rgb(204, 203, 203);
+        grid-column:1/2;
+        grid-row:1/2;
+        margin:20px 0px 20px 20px;
+    }
+    .content-page,.skills-page,.contact-page{
+        background-color: rgb(210, 205, 205);
+        grid-column:2/3;
+        grid-row:1/2;
+        margin:20px 20px 20px 0px;
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    }
+    .profile-page, .projects-page, .content-page{
+        border-right:1px solid rgb(196, 195, 195);
+        box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
+    }
+    
+    /* Detailed grid system and flipping mechanics here */
+    .cover-left.flip, .cover-right.flip{ 
+        transform:rotateY(0deg);
+        z-index: 0;
+    }
+    .cover-left.flip{
+        display:grid;
+        border-radius:5px 0px 0px 5px;
+        box-shadow: 0px 8px 5px -3px rgba(0,0,0,0.5);
+    }
+    .cover-right.flip{
+        border-radius:0px 5px 5px 0px;
+    }
+    .cover-left.inactive{
+        pointer-events: none;
+    }
+    .content-page.fold,.skills-page.fold{
+        transform: rotateY(0deg);
+        z-index: 2;
+        transition: transform 1s ease;
+        transform-origin: left center;
+        margin:20px 20px 20px 0px;
+    }
+    .content-page.fold,.content-page.flip,.profile-page.flip,.projects-page.flip{
+        transform: rotateY(0deg);
+        z-index: 3;
+    }
+    .profile-page.fold,.projects-page.fold{
+        transform: rotateY(95deg);
+        z-index: 3;
+        transition: transform 0.4s ease;
+        transform-origin: center right;
+        margin:20px 0px 20px 20px;
+    }
+    .profile-page.flip,.projects-page.flip{
+        background-color: rgb(210, 205, 205);
+        margin:20px 0px 20px 20px;
+        transition:transform 1s ease; 
+        transform-origin: center right;
+    }
+    .profile-page.flipped, .skills-page.flipped{
+        transform: rotateY(180deg);
+        z-index: 0;
+    }
+    .profile-page.flipped,.skills-page.f{
+        z-index:2;
+        animation: flip 0.8s ease-in-out forwards;
+    }
+    .profile-page.flip, .skills-page.flip,.projects-page.flip, .contact-page.flip{
+        transform: rotateY(0deg);
+        z-index: 2;
+    }
+    .skills-page.flip{
+        animation: fold 0s ease-in-out;
+    }
+    .content-page.flipped,.skills-page.flipped{
+        transform: rotateY(-180deg);
+        z-index: 3;
+        transition: transform 0.7s ease;
+        transform-origin: left center;
+        margin:20px 20px 20px 0px;
+    }
+    .contact-page.fold{
+        z-index:1;
+        animation: flip 0.8s ease-in-out forwards;
+    }
+    table{
+        width:100%;
+        height:100%
+    }
+    td{
+        width:50%;
+        height:15%;
+        text-align:center;
+        vertical-align:middle;
+        vertical-align: center;
+    }
+    .project-table td:first-child,.project-table td:nth-child(3){
+        width:30%;
+        height:40%;
+    }
+    .project-table td:nth-child(2),.project-table td:last-child{
+        width:50%;
+        height:50%;
+    }
+}
+/* Medium desktop screens (1025px - 1100px) */
+@media (min-width:1025px) and (max-width:1100px){
+    /* Smaller fixed width for the container */
+    .container{
+        position:absolute;
+        background-color: rgb(169, 255, 152);
+        width:100%;
+        height:100%;
+        display:grid;
+        grid-template-columns: 1fr 750px 1fr;
+        grid-template-rows: 50px 1fr 50px;
+    }
+}
+/* Tablet and mobile (≤1025px) */
+@media (max-width:1025px){
+    /* ... existing rules remain unchanged ... */
+    .container{
+        position:absolute;
+        background-color: rgb(169, 255, 152);
+        width:100%;
+        height:100%;
+        display:grid;
+        grid-template-columns: 1fr 400px 1fr;
+        grid-template-rows: 1fr 700px 1fr;
+        overflow: auto;
+        scrollbar-width: none;
+    }
+    .wrapper{
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        grid-column: 2/3;
+        grid-row: 2/3;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        border-radius: 5px;
+        perspective: 2000px;
+        position: relative;
+    }
+    .cover{
+        grid-column: 1/2;
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    }
+    .page{
+        background-color: rgb(210, 205, 205);
+        margin:20px 20px 20px 0px;
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+        grid-column: 1/2;
+        grid-row: 1/2;
+        z-index: -1;
+    }
+    /* Single-column layout, simplified animations */
+    .cover.flip{
+        z-index: -1;
+    }
+    .flip{
+        transform: rotateY(0deg);
+        z-index: 2;
+    }
+    .flipped{
+        transform: rotateY(-180deg);
+        z-index: 3;
+        transition: transform 0.7s ease;
+        transform-origin: left center;
+        margin:20px 20px 20px 0px;
+    }
+    .fold{
+        transform: rotateY(0deg);
+        z-index: 2;
+        transition: transform 1s ease;
+        transform-origin: left center;
+        margin:20px 20px 20px 0px;
+    }
+    .flip{
+        animation: fold 0s ease-in-out;
+    }
+    .f{
+        z-index:1;
+        animation: flip 1s ease-in-out forwards;
+    }
+}
+/* Extra small devices (≤400px) */
+@media (max-width:400px){
+    /* Very narrow layout adjustments */
+    .container{
+        position:absolute;
+        background-color: rgb(169, 255, 152);
+        width:100%;
+        height:100%;
+        display:grid;
+        grid-template-columns: 1fr 300px 1fr;
+        grid-template-rows: 1fr 600px 1fr;
+    }
+    
+}
